@@ -1,3 +1,4 @@
+/* Fonction permettant la récupération des données depuis l'API */
 async function recuperer_liste_donnees(url, type) {
     let lien_next = url;
     let donnees_completes = [];
@@ -381,6 +382,7 @@ async function selectionner_menu(event) {
 
     grille_films = document.getElementById("grille-elements-cat4");
 
+    /* Le code HTML est injecté à la demande en fonction du nombre d'éléments de la catégorie sélectionnée */
     for (let k = 1; k <= donnees_exploitables.length; k++) {
         liste_html += '<div class="conteneur">';
         liste_html += '<img id="img-' + k + '-cat4" src="" alt="affiche du film ' + k + '">';
@@ -446,8 +448,15 @@ async function selectionner_menu(event) {
         id_image = "img-" + index + "-cat4";
         id_titre = "titre-" + index + "-cat4";
 
+        let url_image = donnees_exploitables[x].image_url;
+
+        reponse = await fetch(url_image);
+        if (reponse.status === 404) {
+            url_image = "img/image_generique.jpg";
+        }
+
         inserer_donnees(
-            donnees_exploitables[x].image_url,
+            url_image,
             donnees_exploitables[x].title,
             id_image,
             id_titre,
@@ -468,9 +477,10 @@ async function selectionner_menu(event) {
         chargement.className = "chargement-cache";
     }
 
+    bouton_voir_plus = document.getElementById("conteneur-voir-plus-cat4");
+
     if (screen.width < 767) {
         if (donnees_exploitables.length > 2) {
-            bouton_voir_plus = document.getElementById("conteneur-voir-plus-cat4");
             bouton_voir_plus.style.display = "flex";
         }
     } else if (screen.width >= 767 && screen.width < 991) {

@@ -103,7 +103,6 @@ function recuperer_infos_film(annee, genre, imdb, duree_film, pays_film, descrip
     return infos_film;
 }
 
-/* Entrer les informations titre et image de chaque film */
 function entrer_donnees_categories(image_url, titre, decription, id_image, id_titre, id_description) {
     image = document.getElementById(id_image);
     titre_actuel = document.getElementById(id_titre);
