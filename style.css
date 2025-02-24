@@ -3,7 +3,7 @@ body {
     margin-left: 10%;
 }
 
-@media (max-width: 767px) or ((min-width: 768px) and (max-width: 1200px)) {
+@media (max-width: 1200px) {
     body {
         width: 98%;
         margin-left: 1%;
@@ -31,7 +31,6 @@ body {
 #description-meilleur-film-modale {
     display: flex;
     align-items: center;
-    justify-content: center;
     width: 95%;
     font-size: 2.5em;
     font-family: "oswald";
@@ -43,6 +42,14 @@ body {
     #description-meilleur-film-modale {
         font-size: 1.2em;
         width: 90%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+    #description-meilleur-film-modale {
+        font-size: 2em;
+        width: 95%;
+        margin-left: 0.5em;
     }
 }
 
@@ -287,7 +294,7 @@ img {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-@media (max-width: 767px) or ((min-width: 768px) and (max-width: 1200px)) {
+@media (max-width: 1200px) {
     .overlay {
         margin-top: 2em;
         height: 10em;
@@ -305,7 +312,7 @@ img {
     font-size: 2em;
 }
 
-@media (max-width: 767px) or ((min-width: 768px) and (max-width: 1200px)) {
+@media (max-width: 1200px) {
     .titre-overlay {
         font-size: 1.5em;
     }
@@ -332,7 +339,7 @@ img {
     user-select: none !important;
 }
 
-@media (max-width: 767px) or ((min-width: 768px) and (max-width: 1200px)) {
+@media (max-width: 1200px) {
     .bouton {
         font-size: 1.4em;
     }
@@ -374,7 +381,7 @@ img {
     margin-left: 3em;
     width: 60%;
 }
-@media (max-width: 767px) or ((min-width: 768px) and (max-width: 1200px)) {
+@media (max-width: 1200px) {
     .grille-elements-film-modale {
         all: unset;
         display: flex;
@@ -457,7 +464,7 @@ img {
     font-weight: 200;
 }
 
-@media (max-width: 767px) or ((min-width: 768px) and (max-width: 1200px)) {
+@media (max-width: 1200px) {
     .realisateur-film-modale {
         font-size: 1em;
     }
@@ -574,7 +581,7 @@ img {
     display: none;
 }
 
-@media (max-width: 767px) or ((min-width: 768px) and (max-width: 991px)) {
+@media (max-width: 991px) {
     .conteneur-voir-plus {
         display: flex;
         justify-content: center;
@@ -583,7 +590,7 @@ img {
     }
 }
 
-@media (max-width: 767px) or ((min-width: 768px) and (max-width: 991px)) {
+@media (max-width: 991px) {
     .cat4 {
         display: none;
     }

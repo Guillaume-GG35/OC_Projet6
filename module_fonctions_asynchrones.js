@@ -26,7 +26,7 @@ async function recuperer_liste_donnees(url, type) {
     if (type !== "descriptions") {
         donnees_exploitables = [];
         for (i = 0; i < donnees_completes.length; i++) {
-            if (donnees_completes[i].id === 259534 || donnees_completes[i].id === 5575408) {
+            if (donnees_completes[i].id === 259534 || donnees_completes[i].id === 5575408 || donnees_completes[i].id === 9008642 || donnees_completes[i].id === 7822474) {
                 continue;
             } else {
                 donnees_exploitables.push(donnees_completes[i]);
