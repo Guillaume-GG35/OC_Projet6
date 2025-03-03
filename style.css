@@ -10,7 +10,7 @@ body {
     }
 }
 
-#bandeau-superieur {
+#img-top {
     background-image: url("img/bandeau_superieur.png");
     height: 14em;
     background-size: contain;
@@ -18,14 +18,14 @@ body {
 }
 
 @media (max-width: 767px) {
-    #bandeau-superieur {
+    #img-top {
         background-image: url("img/bandeau_mobile.png");
         height: 11em;
     }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-    #bandeau-superieur {
+    #img-top {
         height: 9em;
     }
 }
@@ -36,7 +36,7 @@ body {
     display: none;
 }
 
-.fenetre-modale-affichee {
+.see-modal-window {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -52,7 +52,7 @@ body {
 }
 
 @media (max-width: 767px) {
-    .fenetre-modale-affichee {
+    .see-modal-window {
         height: 35em;
         display: flex;
         flex-direction: column;
@@ -252,7 +252,7 @@ body {
     display: none
 }
 
-.croix-fermeture-affichee {
+.see-close-logo {
     width: 2em;
     height: 2em;
     position: absolute;
@@ -262,7 +262,7 @@ body {
 }
 
 @media (max-width: 767px) {
-    .croix-fermeture-affichee {
+    .see-close-logo {
         width: 2em;
         height: 2em;
         margin: 1em;
@@ -270,7 +270,7 @@ body {
 }
 
 @media (min-width: 768px) and  (max-width: 991px) {
-    .croix-fermeture-affichee {
+    .see-close-logo {
         width: 3em;
         height: 3em;
         margin: 2em;
@@ -278,7 +278,7 @@ body {
 }
 
 @media (min-width: 992px) {
-    .croix-fermeture-affichee {
+    .see-close-logo {
         display: none;
     }
 }
@@ -489,7 +489,7 @@ body {
     }
 }
 
-.contener-cache {
+.hidden-contener {
     display: none;
 }
 
@@ -611,11 +611,11 @@ img {
     align-items: center;
 }
 
-.menu-liste-cache {
+.hidden-menu {
     display: none;
 }
 
-.menu-liste-affiche {
+.see-menu {
     display: flex;
     flex-direction: column;
 }
@@ -707,24 +707,24 @@ img {
     background-color: #e7e7e7;
 }
 
-.lien {
+.link {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-right: 2em;
 }
 
-.lien img {
+.link img {
     width: 1.2em;
 }
 
 /* FIN MENU */
 
-.chargement-cache {
+.hide-loading {
     display: none;
 }
 
-.chargement-affiche {
+.see-loading {
     display: inline;
     padding-left: 2em;
     font-size: 2em;
@@ -734,7 +734,7 @@ img {
 }
 
 @media (max-width: 767px) {
-    .chargement-affiche {
+    .see-loading {
         font-size: 1em;
         padding-left: 0;
     }

@@ -106,9 +106,9 @@ async function menu_titles() {
                 continue;
         }
         if (menu_title.textContent === categories[i - 1]) {
-            html_adding += '<li class="lien" onclick="see_selected_categorie(event)">' + categories[i - 1] + '<img src="img/check.png" alt="menu actif"></li>';
+            html_adding += '<li class="link" onclick="see_selected_categorie(event)">' + categories[i - 1] + '<img src="img/check.png" alt="menu actif"></li>';
         } else {
-            html_adding += '<li class="lien" onclick="see_selected_categorie(event)">' + categories[i - 1] + "</li>";
+            html_adding += '<li class="link" onclick="see_selected_categorie(event)">' + categories[i - 1] + "</li>";
         }
     }
     menu.innerHTML = html_adding;
@@ -116,8 +116,8 @@ async function menu_titles() {
 
 async function see_selected_categorie(event) {
 
-    let loading = document.getElementById("chargement");
-    loading.className = "chargement-affiche";
+    let loading = document.getElementById("loading");
+    loading.className = "see-loading";
     
     reset_conteners()
     change_checkmark_position(event)
@@ -161,7 +161,7 @@ async function see_selected_categorie(event) {
         insert_data(data[x], id_image, id_title, "");
     }
 
-    loading.className = "chargement-cache";
+    loading.className = "hide-loading";
 
     button_more = document.getElementById("contener-see-more-cat4");
         if (data.length > 2 && screen.width <= 767) {

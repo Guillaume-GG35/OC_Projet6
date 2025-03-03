@@ -91,7 +91,7 @@ async function open_modal_window(category, movie_index) {
 
     if (screen.width <= 1200) {
         close_button = document.getElementById("close-logo");
-        close_button.className = "croix-fermeture-affichee"
+        close_button.className = "see-close-logo"
 
         contener_image = document.getElementById("contener-modal-image")
         new_parent = document.getElementById("new-contener-modal-image");
@@ -105,7 +105,7 @@ async function open_modal_window(category, movie_index) {
     insert_data_modal(movie_data, "modal-image", "modal-title", "modal-infos", "modal-infos-line2", "modal-imdb", "modal-director", "modal-actors", "modal-description")
     
     modal_window = document.getElementById("modal-window");
-    modal_window.className = "fenetre-modale-affichee";
+    modal_window.className = "see-modal-window";
     modal_window.scrollTop = 0;
     body.style.overflow = "hidden";
 }
@@ -120,13 +120,13 @@ function change_display_menu() {
     menu = document.getElementById("options-menu");
     button = document.getElementById("button-menu");
     switch (menu.className) {
-        case "menu-liste-cache":
-            menu.className = "menu-liste-affiche";
+        case "hidden-menu":
+            menu.className = "see-menu";
             button.style.outlineStyle = "none";
             break;
 
-        case "menu-liste-affiche":
-            menu.className = "menu-liste-cache";
+        case "see-menu":
+            menu.className = "hidden-menu";
             button.style.outlineStyle = "solid";
             break;
     }
@@ -140,7 +140,7 @@ function reset_conteners() {
         
         title.textContent = "";
         image.src = "img/image_generique.jpg";
-        contener.className = "contener-cache"
+        contener.className = "hidden-contener"
     }
 }
 
@@ -158,10 +158,10 @@ function see_more_less(categorie) {
     if (grid.className === "element-grid develop") {
         grid.className = "element-grid";
         button.scrollIntoView({ behavior: "auto" });
-        button.textContent = "Voir plus";
+        button.textContent = "More";
     } else {
         grid.className = "element-grid develop";
-        button.textContent = "Voir moins";
+        button.textContent = "Less";
     }
 }
 
