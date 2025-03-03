@@ -1,186 +1,188 @@
 const body = document.body;
 
-function parametrage_mobile(categorie, nb_elements) {
-    if (screen.width < 767) {
-        bandeau = document.getElementById("bandeau-superieur");
-        bandeau.src = "img/bandeau_mobile.png";
-    }
-
-    if (screen.width < 1200) {
-        let conteneur_image_modale;
-        let no_categorie = "";
-
-        if (categorie === "cat4") {
-            no_categorie = "-cat4";
-            onclick_categorie = "4";
-        }
-
-        for (let i = 1; i <= 3; i++) {
-            if (i === 1 && categorie !== "cat4") {
-                no_categorie = "-cat1";
-                onclick_categorie = "1";
-                nb_elements = 6;
-            } else if (i === 2 && categorie !== "cat4") {
-                no_categorie = "-cat2";
-                onclick_categorie = "2";
-                nb_elements = 6;
-            } else if (i === 3 && categorie !== "cat4") {
-                no_categorie = "-cat3";
-                onclick_categorie = "3";
-                nb_elements = 6;
-            }
-
-            if (categorie === "cat4") {
-                i = 3;
-            }
-
-            if (i === 1) {
-                nouvel_element = document.createElement("img");
-                nouvel_element.className = "croix-fermeture-modale";
-                nouvel_element.src = "img/croix.png";
-                nouvel_element.alt = "croix fermeture fenêtre";
-                conteneur_image_modale = document.getElementById("conteneur-image-modale-meilleur-film");
-                nouveau_parent_conteneur = document.getElementById("nouveau-conteneur-image-modale-meilleur-film");
-                nouveau_parent_conteneur.appendChild(conteneur_image_modale);
-
-                fenetre_modale = document.getElementById("fenetre-modale-meilleur-film");
-                nouvel_element.setAttribute("onclick", "fermer_fenetre_modale_meilleur_film()");
-                fenetre_modale.appendChild(nouvel_element);
-            }
-
-            for (let j = 1; j <= nb_elements; j++) {
-                nouvel_element = document.createElement("img");
-                nouvel_element.className = "croix-fermeture-modale";
-                nouvel_element.src = "img/croix.png";
-                nouvel_element.alt = "croix fermeture fenêtre";
-                conteneur_image_modale = document.getElementById("conteneur-image-modale-" + j + no_categorie);
-                nouveau_parent_conteneur = document.getElementById("nouveau-conteneur-image-modale-" + j + no_categorie);
-                nouveau_parent_conteneur.appendChild(conteneur_image_modale);
-
-                fenetre_modale = document.getElementById("fenetre-modale-film-" + j + no_categorie);
-                nouvel_element.setAttribute("onclick", "fermer_fenetre_modale_film(" + j + ", " + onclick_categorie + ")");
-                fenetre_modale.appendChild(nouvel_element);
-            }
-        }
+function insert_category_titles(categories) {
+    let title;
+    for (let i = 1; i < 4; i++) {
+        let new_title = categories[i - 1];
+        let id_title = "title".concat(i.toString());
+        title = document.getElementById(id_title);
+        title.textContent = new_title;
     }
 }
 
-function inserer_donnees(
-    image_url,
-    titre,
-    id_image,
-    id_titre,
-    id_description,
-    id_image_modale,
-    id_titre_modale,
-    id_description_modale,
-    realisateurs,
-    infos,
-    acteurs,
-    id_realisateurs,
-    id_infos,
-    id2_infos,
-    id_imdb,
-    id_acteurs
-) {
-    description = infos_film["description"];
-    description_longue = infos_film["description_longue"];
-    entrer_donnees_categories(image_url, titre, description, id_image, id_titre, id_description);
-    entrer_donnees_categories(image_url, titre, description_longue, id_image_modale, id_titre_modale, id_description_modale);
-    entrer_donnees_fenetre_modale(realisateurs, infos, acteurs, id_realisateurs, id_infos, id2_infos, id_imdb, id_acteurs);
-}
+function insert_data(movie, id_image, id_title, id_description) {
 
-function recuperer_infos_film(annee, genre, imdb, duree_film, pays_film, description, description_longue) {
-    infos_film = {};
-    infos_film["year"] = annee;
-    infos_film["genres"] = genre;
-    infos_film["imdb_score"] = imdb;
-    infos_film["duree_film"] = duree_film;
-    infos_film["pays_film"] = pays_film;
-    infos_film["description"] = description;
-    infos_film["description_longue"] = description_longue;
+    let image = document.getElementById(id_image);
+    let title = document.getElementById(id_title);
 
-    return infos_film;
-}
-
-function entrer_donnees_categories(image_url, titre, decription, id_image, id_titre, id_description) {
-    image = document.getElementById(id_image);
-    titre_actuel = document.getElementById(id_titre);
-
-    titre_actuel.textContent = titre;
-    image.setAttribute("src", image_url);
+    title.textContent = movie.title;
+    image.setAttribute("src", movie.image_url);
+    image.onerror = function() {
+        image.src = "img/image_generique.jpg"
+      };
 
     if (id_description !== "") {
-        description_actuelle = document.getElementById(id_description);
-        description_actuelle.textContent = decription;
+        let description_tag = document.getElementById(id_description);
+        description_tag.textContent = movie.description;
     }
 }
 
-function afficher_fenetre_modale_meilleur_film() {
-    fenetre_modale = document.getElementById("fenetre-modale-meilleur-film");
-    fenetre_modale.className = "fenetre-modale-film-affichee";
-    fenetre_modale.scrollTop = 0;
+function insert_data_modal(movie, id_image, id_title, id_infos, id_infos_2, id_imdb, id_directors, id_actors, id_long_description){
+    
+    let title = document.getElementById(id_title);
+    let image = document.getElementById(id_image);
+    let directors_tag = document.getElementById(id_directors);
+    let infos_tag = document.getElementById(id_infos);
+    let infos2_tag = document.getElementById(id_infos_2);
+    let imdb_tag = document.getElementById(id_imdb);
+    let actors_tag = document.getElementById(id_actors);
+    let description = document.getElementById(id_long_description);
+
+    let infos_directors = "";
+    for (let i = 0; i < movie.directors.length; i++) {
+        if (i === movie.directors.length - 1) {
+            infos_directors += movie.directors[i];
+        } else {
+            infos_directors += movie.directors[i] + ", ";
+        }
+    }
+
+    let genres = "";
+    for (let j = 0; j < movie.genres.length; j++) {
+        if (j < movie.genres.length - 1) {
+            genres = genres + movie.genres[j] + ", ";
+        } else {
+            genres = genres + movie.genres[j];
+        }
+    }
+
+    let country = "";
+    for (let k = 0; k < movie.countries.length; k++) {
+        if (k < movie.countries.length - 1) {
+            country = country + movie.countries[k] + " / ";
+        } else {
+            country = country + movie.countries[k];
+        }
+    }
+
+    let actors = "";
+    for (let x = 0; x < movie.actors.length; x++) {
+        if (x + 1 === movie.actors.length) {
+            actors += movie.actors[x];
+        } else {
+            actors += movie.actors[x] + ", ";
+        }
+    }
+
+    title.textContent = movie.original_title;
+    image.src = movie.image_url;
+    image.onerror = function() {
+        image.src = "img/image_generique.jpg"
+      };
+    directors_tag.textContent = infos_directors;
+    infos_tag.textContent = `${movie.year} - ${genres}`;
+    infos2_tag.textContent = `${movie.duration} minutes (${country})`;
+    imdb_tag.textContent = `IMDB score : ${movie.imdb_score}/10`;
+    actors_tag.textContent = actors;
+    description.textContent = movie.long_description;
+}
+
+async function open_modal_window(category, movie_index) {
+
+    if (screen.width <= 1200) {
+        close_button = document.getElementById("close-logo");
+        close_button.className = "croix-fermeture-affichee"
+
+        contener_image = document.getElementById("contener-modal-image")
+        new_parent = document.getElementById("new-contener-modal-image");
+        new_parent.appendChild(contener_image);
+    }
+
+    id_movie = movies[category][movie_index]
+    movie_url = "http://localhost:8000/api/v1/titles/" + id_movie;
+    movie_data = await fetch_data(movie_url, "movie");
+
+    insert_data_modal(movie_data, "modal-image", "modal-title", "modal-infos", "modal-infos-line2", "modal-imdb", "modal-director", "modal-actors", "modal-description")
+    
+    modal_window = document.getElementById("modal-window");
+    modal_window.className = "fenetre-modale-affichee";
+    modal_window.scrollTop = 0;
     body.style.overflow = "hidden";
 }
 
-function fermer_fenetre_modale_meilleur_film() {
-    fenetre_modale = document.getElementById("fenetre-modale-meilleur-film");
-    fenetre_modale.className = "fenetre-modale-film-cachee";
+function close_modal_window() {
+    modal_window = document.getElementById("modal-window");
+    modal_window.className = "hidden-modal-window";
     body.style.overflow = "visible";
 }
 
-function afficher_fenetre_modale_film(id_fenetre, categorie) {
-    fenetre_modale = document.getElementById("fenetre-modale-film-" + id_fenetre + "-cat" + categorie);
-    fenetre_modale.className = "fenetre-modale-film-affichee";
-    fenetre_modale.scrollTop = 0;
-    body.style.overflow = "hidden";
-}
-
-function fermer_fenetre_modale_film(id_fenetre, categorie) {
-    fenetre_modale = document.getElementById("fenetre-modale-film-" + id_fenetre + "-cat" + categorie);
-    fenetre_modale.className = "fenetre-modale-film-cachee";
-    body.style.overflow = "visible";
-}
-
-function afficher_masquer_menu() {
+function change_display_menu() {
     menu = document.getElementById("options-menu");
-    bouton_menu = document.getElementById("bouton-menu");
+    button = document.getElementById("button-menu");
     switch (menu.className) {
         case "menu-liste-cache":
             menu.className = "menu-liste-affiche";
-            bouton_menu.style.outlineStyle = "none";
+            button.style.outlineStyle = "none";
             break;
 
         case "menu-liste-affiche":
             menu.className = "menu-liste-cache";
-            bouton_menu.style.outlineStyle = "solid";
+            button.style.outlineStyle = "solid";
             break;
     }
 }
 
-function masquer_menu() {
-    menu = document.getElementById("options-menu");
-    if (menu.className === "menu-liste-affiche") {
-        menu.className = "menu-liste-cache";
+function reset_conteners() {
+    for (let i = 1; i <= 6; i++) {
+        let image = document.getElementById("img-" + i + "-cat4");
+        let title = document.getElementById("title-" + i + "-cat4");
+        let contener = document.getElementById("contener-" + i + "-cat4")
+        
+        title.textContent = "";
+        image.src = "img/image_generique.jpg";
+        contener.className = "contener-cache"
     }
 }
 
-function voir_plus_moins(categorie) {
-    bouton = document.getElementById("bouton-voir-plus-" + categorie);
-    grille_elements = document.getElementById("grille-elements-" + categorie);
-
-    if (grille_elements.style.maxHeight === "200em") {
-        if (screen.width < 768) {
-            grille_elements.style.maxHeight = "40em";
-        } else {
-            grille_elements.style.maxHeight = "50em";
-        }
-        bouton.textContent = "Voir plus";
-        if (screen.width <= 768) {
-            bouton.scrollIntoView({ behavior: "auto" });
-        }
-    } else {
-        grille_elements.style.maxHeight = "200em";
-        bouton.textContent = "Voir moins";
+function see_conteners(length_data) {
+    for (let i = 1; i <= length_data; i++) {
+        let contener = document.getElementById("contener-" + i + "-cat4")
+        contener.className = "contener"
     }
+}
+
+function see_more_less(categorie) {
+    button = document.getElementById("button-see-more-" + categorie);
+    grid = document.getElementById("element-grid-" + categorie);
+
+    if (grid.className === "element-grid develop") {
+        grid.className = "element-grid";
+        button.scrollIntoView({ behavior: "auto" });
+        button.textContent = "Voir plus";
+    } else {
+        grid.className = "element-grid develop";
+        button.textContent = "Voir moins";
+    }
+}
+
+function change_checkmark_position(event) {
+    selected_element = event.target;
+    menu = document.getElementById("options-menu");
+    li_tag = menu.querySelectorAll("li");
+    for (let i = 0; i < li_tag.length; i++) {
+        if (li_tag[i].querySelector("img") !== null) {
+            li_tag[i].querySelector("img").remove();
+        }
+    }
+    new_tag = document.createElement("img");
+    new_tag.src = "img/check.png";
+    new_tag.alt = "menu actif";
+    selected_element.appendChild(new_tag);
+}
+
+function change_menu_title(event) {
+    selected_element = event.target;
+    menu_title = document.getElementById("category-menu");
+    menu_title.textContent = selected_element.textContent;
+    return menu_title
 }

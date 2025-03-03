@@ -10,25 +10,147 @@ body {
     }
 }
 
-.bandeau-superieur {
-    outline-style: solid;
-    outline-color: rgb(0, 0, 0);
+#bandeau-superieur {
+    background-image: url("img/bandeau_superieur.png");
+    height: 14em;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
-#infos-meilleur-film-modale {
+@media (max-width: 767px) {
+    #bandeau-superieur {
+        background-image: url("img/bandeau_mobile.png");
+        height: 11em;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    #bandeau-superieur {
+        height: 9em;
+    }
+}
+
+/* FENETRE MODALE */
+
+.hidden-modal-window {
+    display: none;
+}
+
+.fenetre-modale-affichee {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 95%;
+    height: 95%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-style: solid;
+    border-width: 0.3em;
+    border-color: rgb(0, 0, 0);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+@media (max-width: 767px) {
+    .fenetre-modale-affichee {
+        height: 35em;
+        display: flex;
+        flex-direction: column;
+        width: 98%;
+    }
+}
+
+.modal-grid {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin-left: 3em;
+    width: 60%;
+}
+@media (max-width: 991px) {
+    .modal-grid {
+        all: unset;
+        display: flex;
+        padding-left: 1.5em;
+    }
+}
+
+#contener-modal-image {
+    position: absolute;
+    top: 2em;
+    right: 2em;
+    width: 20%;
+}
+
+@media (max-width: 767px) {
+    #contener-modal-image {
+        position: static;
+        width: 92%;
+        margin: 1em;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    #contener-modal-image {
+        position: static;
+        width: 95.5%;
+        margin: 1em;
+    }
+}
+
+.contener-modal-text {
+    font-size: 2.5em;
+    font-family: "oswald";
+    font-weight: bold;
+    min-width: 100%;
+    margin-top: 1em;
+}
+
+@media (max-width: 767px) {
+    .contener-modal-text {
+        font-size: 1em;
+        margin-top: 0;
+    }
+    .contener-modal-text h1 {
+        width: 85%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .contener-modal-text {
+        font-size: 2em;
+        margin-top: 0;
+    }
+    .contener-modal-text h1 {
+        width: 85%;
+    }
+}
+
+#modal-infos {
     font-size: 1em;
     font-family: "oswald";
     font-weight: 600;
     max-width: 45%;
 }
 
-#realisateur-meilleur-film-modale {
+.delete-margin {
+    margin: 0;
+    padding: 0;
+    min-width: 90%;
+}
+
+#modal-director {
     font-size: 1.2em;
     font-family: "oswald";
     font-weight: 200;
 }
 
-#description-meilleur-film-modale {
+.modal-director {
+    font-weight: bold;
+}
+
+#modal-description {
     display: flex;
     align-items: center;
     width: 95%;
@@ -39,21 +161,73 @@ body {
 }
 
 @media (max-width: 767px) {
-    #description-meilleur-film-modale {
+    #modal-description {
         font-size: 1.2em;
         width: 90%;
     }
 }
 
-@media (min-width: 768px) and (max-width: 1200px) {
-    #description-meilleur-film-modale {
+@media (min-width: 768px) and (max-width: 991px) {
+    #modal-description {
         font-size: 2em;
         width: 95%;
         margin-left: 0.5em;
     }
 }
 
-.bouton-meilleur-film-modale {
+@media (min-width: 991px) and (max-width: 1200px) {
+    #modal-description {
+        font-size: 2em;
+        width: 95%;
+        margin-left: 0.5em;
+    }
+}
+
+.contener-modal-actors {
+    font-size: 2em;
+    font-family: "oswald";
+    font-weight: 200;
+    margin-left: 1em;
+}
+
+@media (max-width: 767px) {
+    .contener-modal-actors {
+        font-size: 1em;
+        margin-bottom: 1em;
+        margin-right: 1em;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .contener-modal-actors {
+        font-size: 1.6em;
+        margin-bottom: 1em;
+        margin-right: 1em;
+    }
+}
+
+.contener-modal-actors p {
+    margin: 0;
+    padding: 0;
+}
+
+.with {
+    font-weight: 600;
+}
+
+.contener-modal-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 991px) {
+    .contener-modal-button {
+        display: none;
+    }
+}
+
+.modal-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,13 +242,52 @@ body {
     user-select: none !important;
 }
 
-@media (max-width: 767px) {
-    .bouton-meilleur-film-modale {
-        font-size: 1.5em;
+@media (max-width: 1200px) {
+    .modal-button {
+        font-size: 2em;
     }
 }
 
-.grille-elements-meilleur-film {
+.hidden-close-logo {
+    display: none
+}
+
+.croix-fermeture-affichee {
+    width: 2em;
+    height: 2em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1em;
+}
+
+@media (max-width: 767px) {
+    .croix-fermeture-affichee {
+        width: 2em;
+        height: 2em;
+        margin: 1em;
+    }
+}
+
+@media (min-width: 768px) and  (max-width: 991px) {
+    .croix-fermeture-affichee {
+        width: 3em;
+        height: 3em;
+        margin: 2em;
+    }
+}
+
+@media (min-width: 992px) {
+    .croix-fermeture-affichee {
+        display: none;
+    }
+}
+
+/* FIN MODALE */
+
+/* MEILLEUR FILM */
+
+.best-movie-grid {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -85,21 +298,21 @@ body {
 }
 
 @media (max-width: 767px) {
-    .grille-elements-meilleur-film {
+    .best-movie-grid {
         flex-direction: column;
         border-width: 0.4em;
         justify-content: flex-start;
     }
 }
 
-.conteneur-image-meilleur-film {
+.contener-best-movie-image {
     height: 100%;
     width: 20em;
     padding: 1em;
 }
 
 @media (max-width: 767px) {
-    .conteneur-image-meilleur-film {
+    .contener-best-movie-image {
         height: 20em;
         max-width: 35em;
         width: 95%;
@@ -107,7 +320,7 @@ body {
     }
 }
 
-.conteneur-texte-meilleur-film {
+.contener-best-movie-text {
     position: relative;
     width: 20em;
     height: 15em;
@@ -117,7 +330,7 @@ body {
 }
 
 @media (max-width: 767px) {
-    .conteneur-texte-meilleur-film {
+    .contener-best-movie-text {
         font-size: 1.2em;
         margin-bottom: 1em;
         display: flex;
@@ -130,25 +343,25 @@ body {
         margin-top: 0;
     }
 
-    .conteneur-texte-meilleur-film h1 {
+    .contener-best-movie-text h1 {
         margin-bottom: 0;
     }
 }
 
 @media (min-width: 768px) and (max-width: 1200px) {
-    .conteneur-texte-meilleur-film {
+    .contener-best-movie-text {
         font-size: 1.6em;
         margin-bottom: 1em;
         display: flex;
         flex-direction: column;
     }
 
-    .conteneur-texte-meilleur-film h1 {
+    .contener-best-movie-text h1 {
         margin-bottom: 0;
     }
 }
 
-.bouton-meilleur-film {
+.best-movie-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -159,6 +372,7 @@ body {
     width: 6em;
     height: 2em;
     border-radius: 1em;
+    font-family: "oswald";
     font-size: 2.5em;
     font-weight: 500;
     background-color: #fa0b0b;
@@ -166,7 +380,7 @@ body {
 }
 
 @media (max-width: 767px) {
-    .bouton-meilleur-film {
+    .best-movie-button {
         position: static;
         min-height: 2.2em;
         margin-top: 0;
@@ -175,37 +389,39 @@ body {
 }
 
 @media (min-width: 768px) and (max-width: 1200px) {
-    .bouton-meilleur-film {
+    .best-movie-button {
         font-size: 2em;
         right: 2em;
     }
 }
 
-.categorie {
+/* FIN MEILLEUR FILM */
+
+.category {
     position: relative;
     margin-bottom: 3em;
 }
 
-.titre-categorie {
+.category-title {
     font-family: "oswald";
     font-weight: 600;
     font-size: 3em;
 }
 
 @media (max-width: 767px) {
-    .titre-categorie {
+    .category-title {
         font-size: 1.2em;
         text-align: center;
     }
 }
 
 @media (min-width: 768px) and (max-width: 1200px) {
-    .titre-categorie {
+    .category-title {
         font-size: 2em;
     }
 }
 
-.grille-elements {
+.element-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -213,7 +429,7 @@ body {
 }
 
 @media (max-width: 767px) {
-    .grille-elements {
+    .element-grid {
         margin-top: 0;
         margin-bottom: 0;
         padding-top: 0;
@@ -227,7 +443,7 @@ body {
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-    .grille-elements {
+    .element-grid {
         max-height: 50em;
         overflow-y: hidden;
         margin-top: 4em;
@@ -235,12 +451,16 @@ body {
 }
 
 @media (min-width: 991px) {
-    .grille-elements {
+    .element-grid {
         margin-top: 4em;
     }
 }
 
-.conteneur {
+.develop {
+    max-height: 200em;
+}
+
+.contener {
     margin: auto;
     display: flex;
     justify-content: center;
@@ -252,7 +472,7 @@ body {
 }
 
 @media (max-width: 767px) {
-    .conteneur {
+    .contener {
         max-height: 20em;
         max-width: 100%;
         margin-top: 0;
@@ -263,10 +483,14 @@ body {
 }
 
 @media (min-width: 768px) and (max-width: 1200px) {
-    .conteneur {
+    .contener {
         max-height: 20em;
         max-width: 20em;
     }
+}
+
+.contener-cache {
+    display: none;
 }
 
 img {
@@ -276,7 +500,7 @@ img {
 }
 
 @media (max-width: 767px) {
-    .conteneur img {
+    .contener img {
         height: 18em;
         margin-bottom: 0;
         margin-top: 0;
@@ -301,7 +525,7 @@ img {
     }
 }
 
-.titre-overlay {
+.title-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -313,12 +537,12 @@ img {
 }
 
 @media (max-width: 1200px) {
-    .titre-overlay {
+    .title-overlay {
         font-size: 1.5em;
     }
 }
 
-.bouton {
+.button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -340,249 +564,17 @@ img {
 }
 
 @media (max-width: 1200px) {
-    .bouton {
+    .button {
         font-size: 1.4em;
     }
 }
 
-.fenetre-modale-film-cachee {
-    display: none;
-}
-
-.fenetre-modale-film-affichee {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 95%;
-    height: 95%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    border-style: solid;
-    border-width: 0.3em;
-    border-color: rgb(0, 0, 0);
-    z-index: 1000;
-    overflow-y: auto;
-}
-
-@media (max-width: 767px) {
-    .fenetre-modale-film-affichee {
-        height: 35em;
-        display: flex;
-        flex-direction: column;
-        width: 98%;
-    }
-}
-
-.grille-elements-film-modale {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    margin-left: 3em;
-    width: 60%;
-}
-@media (max-width: 1200px) {
-    .grille-elements-film-modale {
-        all: unset;
-        display: flex;
-        padding-left: 1.5em;
-    }
-}
-
-.conteneur-image-film-modale {
-    position: absolute;
-    top: 2em;
-    right: 2em;
-    width: 20%;
-}
-
-@media (max-width: 767px) {
-    .conteneur-image-film-modale {
-        position: static;
-        width: 92%;
-        margin: 1em;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-    .conteneur-image-film-modale {
-        position: static;
-        width: 95.5%;
-        margin: 1em;
-    }
-}
-
-.conteneur-texte-film-modale {
-    font-size: 2.5em;
-    font-family: "oswald";
-    font-weight: bold;
-    min-width: 100%;
-    margin-top: 1em;
-}
-
-@media (max-width: 767px) {
-    .conteneur-texte-film-modale {
-        font-size: 1em;
-        margin-top: 0;
-    }
-    .conteneur-texte-film-modale h1 {
-        width: 85%;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-    .conteneur-texte-film-modale {
-        font-size: 2em;
-        margin-top: 0;
-    }
-    .conteneur-texte-film-modale h1 {
-        width: 85%;
-    }
-}
-
-#infos-film-modale {
-    font-size: 1em;
-    font-family: "oswald";
-    font-weight: 600;
-    max-width: 45%;
-}
-@media (max-width: 767px) {
-    #infos-film-modale {
-        font-size: 0.5em;
-    }
-}
-
-.supprimer-margin-padding {
-    margin: 0;
-    padding: 0;
-    min-width: 90%;
-}
-
-.realisateur-film-modale {
-    font-size: 1.2em;
-    font-family: "oswald";
-    font-weight: 200;
-}
-
-@media (max-width: 1200px) {
-    .realisateur-film-modale {
-        font-size: 1em;
-    }
-}
-
-.realisateur-film-modale span {
-    font-weight: bold;
-}
-
-.description-film-modale {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 95%;
-    font-size: 2.5em;
-    font-family: "oswald";
-    font-weight: 200;
-    margin-left: 1em;
-}
-
-@media (max-width: 767px) {
-    .description-film-modale {
-        font-size: 1.2em;
-        width: 90%;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-    .description-film-modale {
-        font-size: 2em;
-        width: 95%;
-        margin-left: 0.5em;
-    }
-}
-
-.conteneur-liste-acteurs-modale {
-    font-size: 2em;
-    font-family: "oswald";
-    font-weight: 200;
-    margin-left: 1em;
-}
-
-@media (max-width: 767px) {
-    .conteneur-liste-acteurs-modale {
-        font-size: 1em;
-        margin-bottom: 1em;
-        margin-right: 1em;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-    .conteneur-liste-acteurs-modale {
-        font-size: 1.6em;
-        margin-bottom: 1em;
-        margin-right: 1em;
-    }
-}
-
-.conteneur-liste-acteurs-modale p {
-    margin: 0;
-    padding: 0;
-}
-
-.avec {
-    font-weight: 600;
-}
-
-.conteneur-bouton-modale {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.bouton-film-modale {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    width: 8em;
-    height: 1.5em;
-    border-radius: 1em;
-    font-family: "oswald";
-    font-size: 3em;
-    font-weight: 500;
-    background-color: #fa0b0b;
-    user-select: none !important;
-}
-
-@media (max-width: 1200px) {
-    .bouton-film-modale {
-        display: none;
-    }
-}
-
-.croix-fermeture-modale {
-    width: 2em;
-    height: 2em;
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 1em;
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-    .croix-fermeture-modale {
-        width: 3em;
-        height: 3em;
-        margin: 2em;
-    }
-}
-
-.conteneur-voir-plus,
-.conteneur-voir-plus-cat4 {
+.contener-see-more, .contener-see-more-cache {
     display: none;
 }
 
 @media (max-width: 991px) {
-    .conteneur-voir-plus {
+    .contener-see-more {
         display: flex;
         justify-content: center;
         margin: 0;
@@ -590,13 +582,7 @@ img {
     }
 }
 
-@media (max-width: 991px) {
-    .cat4 {
-        display: none;
-    }
-}
-
-.bouton-voir-plus {
+.button-see-more {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -613,12 +599,14 @@ img {
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-    .bouton-voir-plus {
+    .button-see-more {
         font-size: 1.6em;
     }
 }
 
-.titre-menu {
+/* MENU */
+
+.title-menu {
     display: flex;
     align-items: center;
 }
@@ -636,7 +624,7 @@ img {
     text-align: center;
 }
 
-.conteneur-titre-menu {
+.contener-title-menu {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -651,24 +639,24 @@ img {
 }
 
 @media (max-width: 767px) {
-    .conteneur-titre-menu {
+    .contener-title-menu {
         max-width: 10em;
         height: 1.5em;
     }
 }
 
 @media (min-width: 768px) and (max-width: 1200px) {
-    .conteneur-titre-menu {
+    .contener-title-menu {
         max-width: 20em;
     }
 }
 
-.conteneur-titre-menu img {
+.contener-title-menu img {
     width: 10%;
 }
 
 @media (max-width: 767px) {
-    .conteneur-titre-menu img {
+    .contener-title-menu img {
         width: 1.5em;
     }
 }
@@ -729,6 +717,8 @@ img {
 .lien img {
     width: 1.2em;
 }
+
+/* FIN MENU */
 
 .chargement-cache {
     display: none;

@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?cat3=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <title>JustStreamIt</title>
     <script src="module_fonctions_asynchrones.js" defer></script>
     <script src="module_fonctions.js" defer></script>
@@ -13,730 +15,294 @@
 </head>
 
 <body>
-    <div>
-        <img id="bandeau-superieur" src="img/bande-superieure.png" alt="image d'en-tête choisie au hasard" class="bandeau-superieur">
+    <div id="img-top"></div>
+
+    <div id="modal-window" class="hidden-modal-window">
+        <img id="close-logo" class="hidden-close-logo" src="img/croix.png" alt="croix fermeture fenêtre" onclick="close_modal_window()">
+        <div class="modal-grid">
+            <div id="contener-modal-image">
+                <img id="modal-image" src="img/image_generique.jpg" alt="affiche du film">
+            </div>
+            <div class="contener-modal-text">
+                <h1 id="modal-title">title modale</h1>
+                <p id="modal-infos" class="delete-margin"></p>
+                <p id="modal-infos-line2" class="delete-margin"></p>
+                <p id="modal-imdb" class="delete-margin"></p>
+                <p class="modal-director"><span>Directors:</span><br>
+                    <span id="modal-director"></span>
+                </p>
+            </div>
+        </div>
+        <p id="modal-description"></p>
+        <div id="new-contener-modal-image"></div>
+        <div class="contener-modal-actors">
+            <p class="with">With :</p>
+            <p id="modal-actors"></p>
+        </div>
+        <div class="contener-modal-button">
+            <p class="modal-button" onclick="close_modal_window()">Close</p>
+        </div>
     </div>
 
-    <div class="categorie">
-
-        <div class="titre-categorie">
-            <h1>Meilleur film</h1>
+    <div class="category">
+        <div class="category-title">
+            <h1>Best movie</h1>
         </div>
+        <div class="best-movie-grid">
 
-        <div class="grille-elements-meilleur-film">
-
-            <div class="conteneur-image-meilleur-film">
-                <img id="image-meilleur-film" src="" alt="affiche du film">
+            <div class="contener-best-movie-image">
+                <img id="best-movie-image" src="img/image_generique.jpg" alt="affiche du film">
             </div>
 
-            <div class="conteneur-texte-meilleur-film">
-                <h1 id="titre-meilleur-film"></h1>
-                <p id="description-meilleur-film"></p>                
+            <div class="contener-best-movie-text">
+                <h1 id="best-movie-title">title meilleur film</h1>
+                <p id="best-movie-description"></p>                
             </div>
 
-            <p class="bouton-meilleur-film" onclick="afficher_fenetre_modale_meilleur_film()">Détails</p>
-
-            <div id="fenetre-modale-meilleur-film" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-meilleur-film" class="conteneur-image-film-modale">
-                        <img id="image-meilleur-film-modale" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-meilleur-film-modale"></h1>
-                        <p class="supprimer-margin-padding" id="infos-meilleur-film-modale"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-meilleur-film-modale"></p>
-                        <p class="supprimer-margin-padding" id="imdb-meilleur-film-modale"></p>
-                        <p class="realisateur-film-modale"><span>Réalisé par:</span></br>
-                            <span id="realisateurs-meilleur-film-modale"></span>
-                        </p>
-                    </div>
-                </div>
-                <p id="description-meilleur-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-meilleur-film"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-meilleur-film-modale"></p>
-                </div>
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_meilleur_film()">Fermer</p>
-                </div>
-            </div>
-
+            <p class="best-movie-button" onclick="open_modal_window('0', '0')">Details</p>
         </div>
     </div>        
 
-    <div class="categorie">
-
-        <div class="titre-categorie">
-            <h1 id="titre1"></h1>
+    <div class="category">
+        <div class="category-title">
+            <h1 id="title1">title 1</h1>
         </div>
+        <div id="element-grid-cat1" class="element-grid">
 
-        <div id="grille-elements-cat1" class="grille-elements">
-
-
-            <div class="conteneur">
-                <img id="img-1-cat1" src="" alt="affiche du film 1">
+            <div class="contener">
+                <img id="img-1-cat1" src="img/image_generique.jpg" alt="affiche du film 1">
                 <div class="overlay">
-                    <p id="titre-1-cat1" class="titre-overlay"></p>
-                    <p class="bouton" onclick="afficher_fenetre_modale_film('1', '1')">Détails</p>
+                    <p id="title-1-cat1" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window(1, 0)">Details</p>
                 </div>
             </div>
 
-            <div id="fenetre-modale-film-1-cat1" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-1-cat1" class="conteneur-image-film-modale">
-                        <img id="image-film-1-modale-cat1" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-film-1-modale-cat1"></h1>
-                        <p class="supprimer-margin-padding" id="infos-film-1-modale-cat1"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-film-1-modale-cat1"></p>
-                        <p class="supprimer-margin-padding" id="imdb-film-1-modale-cat1"></p>
-                        <p class="realisateur-film-modale"><span>Réalisé par:</span></br>
-                            <span id="realisateurs-film-1-modale-cat1"></span>
-                        </p>
-                    </div>
-                </div>
-                <p id="description-film-1-modale-cat1" class="description-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-1-cat1"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-film-1-modale-cat1"></p>
-                </div>                
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_film('1', '1')">Fermer</p>
-                </div>
-            </div>
-
-            <div class="conteneur">
-                <img id="img-2-cat1" src="" alt="affiche du film 2">
+            <div class="contener">
+                <img id="img-2-cat1" src="img/image_generique.jpg" alt="affiche du film 2">
                 <div class="overlay">
-                    <p id="titre-2-cat1" class="titre-overlay"></p>
-                    <p class="bouton" onclick="afficher_fenetre_modale_film('2', '1')">Détails</p>
+                    <p id="title-2-cat1" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('1', '1')">Details</p>
                 </div>
             </div>
 
-            <div id="fenetre-modale-film-2-cat1" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-2-cat1" class="conteneur-image-film-modale">
-                        <img id="image-film-2-modale-cat1" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-film-2-modale-cat1"></h1>
-                        <p class="supprimer-margin-padding" id="infos-film-2-modale-cat1"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-film-2-modale-cat1"></p>
-                        <p class="supprimer-margin-padding" id="imdb-film-2-modale-cat1"></p>
-                        <p class="realisateur-film-modale"><span>Réalisé par:</span></br>
-                            <span id="realisateurs-film-2-modale-cat1"></span>
-                        </p>
-                    </div>
-                </div>
-                <p id="description-film-2-modale-cat1" class="description-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-2-cat1"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-film-2-modale-cat1"></p>
-                </div>                
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_film('2', '1')">Fermer</p>
-                </div>
-            </div>
-
-            <div class="conteneur">
-                <img id="img-3-cat1" src="" alt="affiche du film 3">
+            <div class="contener">
+                <img id="img-3-cat1" src="img/image_generique.jpg" alt="affiche du film 3">
                 <div class="overlay">
-                    <p id="titre-3-cat1" class="titre-overlay"></p>
-                    <p class="bouton" onclick="afficher_fenetre_modale_film('3', '1')">Détails</p>
+                    <p id="title-3-cat1" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('1', '2')">Details</p>
                 </div>
             </div>
 
-            <div id="fenetre-modale-film-3-cat1" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-3-cat1" class="conteneur-image-film-modale">
-                        <img id="image-film-3-modale-cat1" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-film-3-modale-cat1"></h1>
-                        <p class="supprimer-margin-padding" id="infos-film-3-modale-cat1"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-film-3-modale-cat1"></p>
-                        <p class="supprimer-margin-padding" id="imdb-film-3-modale-cat1"></p>
-                        <p class="realisateur-film-modale"><span>Réalisé par:</span></br>
-                            <span id="realisateurs-film-3-modale-cat1"></span>
-                        </p>
-                    </div>
-                </div>
-                <p id="description-film-3-modale-cat1" class="description-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-3-cat1"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-film-3-modale-cat1"></p>
-                </div>                
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_film('3', '1')">Fermer</p>
-                </div>
-            </div>
-
-            <div class="conteneur">
-                <img id="img-4-cat1" src="" alt="affiche du film 4">
+            <div class="contener">
+                <img id="img-4-cat1" src="img/image_generique.jpg" alt="affiche du film 4">
                 <div class="overlay">
-                    <p id="titre-4-cat1" class="titre-overlay"></p>
-                    <p class="bouton" onclick="afficher_fenetre_modale_film('4', '1')">Détails</p>
+                    <p id="title-4-cat1" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('1', '3')">Details</p>
                 </div>
             </div>
 
-            <div id="fenetre-modale-film-4-cat1" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-4-cat1" class="conteneur-image-film-modale">
-                        <img id="image-film-4-modale-cat1" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-film-4-modale-cat1"></h1>
-                        <p class="supprimer-margin-padding" id="infos-film-4-modale-cat1"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-film-4-modale-cat1"></p>
-                        <p class="supprimer-margin-padding" id="imdb-film-4-modale-cat1"></p>
-                        <p class="realisateur-film-modale"><span>Réalisé par:</span></br>
-                            <span id="realisateurs-film-4-modale-cat1"></span>
-                        </p>
-                    </div>
-                </div>
-                <p id="description-film-4-modale-cat1" class="description-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-4-cat1"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-film-4-modale-cat1"></p>
-                </div>                
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_film('4', '1')">Fermer</p>
-                </div>
-            </div>
-
-            <div class="conteneur">
-                <img id="img-5-cat1" src="" alt="affiche du film 5">
+            <div class="contener">
+                <img id="img-5-cat1" src="img/image_generique.jpg" alt="affiche du film 5">
                 <div class="overlay">
-                    <p id="titre-5-cat1" class="titre-overlay"></p>
-                    <p class="bouton" onclick="afficher_fenetre_modale_film('5', '1')">Détails</p>
+                    <p id="title-5-cat1" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('1', '4')">Details</p>
                 </div>
             </div>
 
-            <div id="fenetre-modale-film-5-cat1" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-5-cat1" class="conteneur-image-film-modale">
-                        <img id="image-film-5-modale-cat1" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-film-5-modale-cat1"></h1>
-                        <p class="supprimer-margin-padding" id="infos-film-5-modale-cat1"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-film-5-modale-cat1"></p>
-                        <p class="supprimer-margin-padding" id="imdb-film-5-modale-cat1"></p>
-                        <p class="realisateur-film-modale">Réalisé par:</br>
-                            <span id="realisateurs-film-5-modale-cat1"></span>
-                        </p>
-                    </div>
-                </div>
-                <p id="description-film-5-modale-cat1" class="description-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-5-cat1"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-film-5-modale-cat1"></p>
-                </div>                
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_film('5', '1')">Fermer</p>
-                </div>
-            </div>
-
-            <div class="conteneur">
-                <img id="img-6-cat1" src="" alt="affiche du film 6">
+            <div class="contener">
+                <img id="img-6-cat1" src="img/image_generique.jpg" alt="affiche du film 6">
                 <div class="overlay">
-                    <p id="titre-6-cat1" class="titre-overlay"></p>
-                    <p class="bouton" onclick="afficher_fenetre_modale_film('6', '1')">Détails</p>
+                    <p id="title-6-cat1" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('1', '5')">Details</p>
+                </div>
+            </div>
+        </div>
+        <div class="contener-see-more">
+            <p id="button-see-more-cat1" class="button-see-more" onclick="see_more_less('cat1')">Voir plus</p>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="category-title">
+            <h1 id="title2">title 2</h1>
+        </div>
+        <div id="element-grid-cat2" class="element-grid">
+
+            <div class="contener">
+                <img id="img-1-cat2" src="img/image_generique.jpg" alt="affiche du film 1">
+                <div class="overlay">
+                    <p id="title-1-cat2" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('2', '0')">Details</p>
                 </div>
             </div>
 
-            <div id="fenetre-modale-film-6-cat1" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-6-cat1" class="conteneur-image-film-modale">
-                        <img id="image-film-6-modale-cat1" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-film-6-modale-cat1"></h1>
-                        <p class="supprimer-margin-padding" id="infos-film-6-modale-cat1"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-film-6-modale-cat1"></p>
-                        <p class="supprimer-margin-padding" id="imdb-film-6-modale-cat1"></p>
-                        <p class="realisateur-film-modale"><span>Réalisé par:</span></br>
-                            <span id="realisateurs-film-6-modale-cat1"></span>
-                        </p>
-                    </div>
+            <div class="contener">
+                <img id="img-2-cat2" src="img/image_generique.jpg" alt="affiche du film 2">
+                <div class="overlay">
+                    <p id="title-2-cat2" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('2', '1')">Details</p>
                 </div>
-                <p id="description-film-6-modale-cat1" class="description-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-6-cat1"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-film-6-modale-cat1"></p>
-                </div>                
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_film('6', '1')">Fermer</p>
+            </div>
+
+            <div class="contener">
+                <img id="img-3-cat2" src="img/image_generique.jpg" alt="affiche du film 3">
+                <div class="overlay">
+                    <p id="title-3-cat2" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('2', '2')">Details</p>
                 </div>
             </div>
             
+            <div class="contener">
+                <img id="img-4-cat2" src="img/image_generique.jpg" alt="affiche du film 4">
+                <div class="overlay">
+                    <p id="title-4-cat2" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('2', '3')">Details</p>
+                </div>
+            </div>
+
+            <div class="contener">
+                <img id="img-5-cat2" src="img/image_generique.jpg" alt="affiche du film 5">
+                <div class="overlay">
+                    <p id="title-5-cat2" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('2', '4')">Details</p>
+                </div>
+            </div>
+
+            <div class="contener">
+                <img id="img-6-cat2" src="img/image_generique.jpg" alt="affiche du film 6">
+                <div class="overlay">
+                    <p id="title-6-cat2" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('2', '5')">Details</p>
+                </div>
+            </div>
         </div>
-        <div class="conteneur-voir-plus">
-            <p id="bouton-voir-plus-cat1" class="bouton-voir-plus" onclick="voir_plus_moins('cat1')">Voir plus</p>
-        </div>
-    </div>
-
-    <div class="categorie">
-
-        <div class="titre-categorie">
-            <h1 id="titre2"></h1>
-        </div>
-
-        <div id="grille-elements-cat2" class="grille-elements">
-
-            <div class="conteneur">
-                <img id="img-1-cat2" src="" alt="affiche du film 1">
-                <div class="overlay">
-                    <p id="titre-1-cat2" class="titre-overlay"></p>
-                    <p class="bouton" onclick="afficher_fenetre_modale_film('1', '2')">Détails</p>
-                </div>
-            </div>
-
-            <div id="fenetre-modale-film-1-cat2" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-1-cat2" class="conteneur-image-film-modale">
-                        <img id="image-film-1-modale-cat2" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-film-1-modale-cat2"></h1>
-                        <p class="supprimer-margin-padding" id="infos-film-1-modale-cat2"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-film-1-modale-cat2"></p>
-                        <p class="supprimer-margin-padding" id="imdb-film-1-modale-cat2"></p>
-                        <p class="realisateur-film-modale"><span>Réalisé par:</span></br>
-                            <span id="realisateurs-film-1-modale-cat2"></span>
-                        </p>
-                    </div>
-                </div>
-                <p id="description-film-1-modale-cat2" class="description-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-1-cat2"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-film-1-modale-cat2"></p>
-                </div>                
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_film('1', '2')">Fermer</p>
-                </div>
-            </div>
-
-            <div class="conteneur">
-                <img id="img-2-cat2" src="" alt="affiche du film 2">
-                <div class="overlay">
-                    <p id="titre-2-cat2" class="titre-overlay"></p>
-                    <p class="bouton" onclick="afficher_fenetre_modale_film('2', '2')">Détails</p>
-                </div>
-            </div>
-
-            <div id="fenetre-modale-film-2-cat2" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-2-cat2" class="conteneur-image-film-modale">
-                        <img id="image-film-2-modale-cat2" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-film-2-modale-cat2"></h1>
-                        <p class="supprimer-margin-padding" id="infos-film-2-modale-cat2"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-film-2-modale-cat2"></p>
-                        <p class="supprimer-margin-padding" id="imdb-film-2-modale-cat2"></p>
-                        <p class="realisateur-film-modale"><span>Réalisé par:</span></br>
-                            <span id="realisateurs-film-2-modale-cat2"></span>
-                        </p>
-                    </div>
-                </div>
-                <p id="description-film-2-modale-cat2" class="description-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-2-cat2"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-film-2-modale-cat2"></p>
-                </div>                
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_film('2', '2')">Fermer</p>
-                </div>
-            </div>
-
-            <div class="conteneur">
-                <img id="img-3-cat2" src="" alt="affiche du film 3">
-                <div class="overlay">
-                    <p id="titre-3-cat2" class="titre-overlay"></p>
-                    <p class="bouton" onclick="afficher_fenetre_modale_film('3', '2')">Détails</p>
-                </div>
-            </div>
-            
-            <div id="fenetre-modale-film-3-cat2" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-3-cat2" class="conteneur-image-film-modale">
-                        <img id="image-film-3-modale-cat2" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-film-3-modale-cat2"></h1>
-                        <p class="supprimer-margin-padding" id="infos-film-3-modale-cat2"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-film-3-modale-cat2"></p>
-                        <p class="supprimer-margin-padding" id="imdb-film-3-modale-cat2"></p>
-                        <p class="realisateur-film-modale"><span>Réalisé par:</span></br>
-                            <span id="realisateurs-film-3-modale-cat2"></span>
-                        </p>
-                    </div>
-                </div>
-                <p id="description-film-3-modale-cat2" class="description-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-3-cat2"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-film-3-modale-cat2"></p>
-                </div>                
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_film('3', '2')">Fermer</p>
-                </div>
-            </div>
-
-            <div class="conteneur">
-                <img id="img-4-cat2" src="" alt="affiche du film 4">
-                <div class="overlay">
-                    <p id="titre-4-cat2" class="titre-overlay"></p>
-                    <p class="bouton" onclick="afficher_fenetre_modale_film('4', '2')">Détails</p>
-                </div>
-            </div>
-
-            <div id="fenetre-modale-film-4-cat2" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-4-cat2" class="conteneur-image-film-modale">
-                        <img id="image-film-4-modale-cat2" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-film-4-modale-cat2"></h1>
-                        <p class="supprimer-margin-padding" id="infos-film-4-modale-cat2"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-film-4-modale-cat2"></p>
-                        <p class="supprimer-margin-padding" id="imdb-film-4-modale-cat2"></p>
-                        <p class="realisateur-film-modale"><span>Réalisé par:</span></br>
-                            <span id="realisateurs-film-4-modale-cat2"></span>
-                        </p>
-                    </div>
-                </div>
-                <p id="description-film-4-modale-cat2" class="description-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-4-cat2"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-film-4-modale-cat2"></p>
-                </div>                
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_film('4', '2')">Fermer</p>
-                </div>
-            </div>
-
-            <div class="conteneur">
-                <img id="img-5-cat2" src="" alt="affiche du film 5">
-                <div class="overlay">
-                    <p id="titre-5-cat2" class="titre-overlay"></p>
-                    <p class="bouton" onclick="afficher_fenetre_modale_film('5', '2')">Détails</p>
-                </div>
-            </div>
-
-            <div id="fenetre-modale-film-5-cat2" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-5-cat2" class="conteneur-image-film-modale">
-                        <img id="image-film-5-modale-cat2" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-film-5-modale-cat2"></h1>
-                        <p class="supprimer-margin-padding" id="infos-film-5-modale-cat2"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-film-5-modale-cat2"></p>
-                        <p class="supprimer-margin-padding" id="imdb-film-5-modale-cat2"></p>
-                        <p class="realisateur-film-modale"><span>Réalisé par:</span></br>
-                            <span id="realisateurs-film-5-modale-cat2"></span>
-                        </p>
-                    </div>
-                </div>
-                <p id="description-film-5-modale-cat2" class="description-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-5-cat2"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-film-5-modale-cat2"></p>
-                </div>                
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_film('5', '2')">Fermer</p>
-                </div>
-            </div>
-
-            <div class="conteneur">
-                <img id="img-6-cat2" src="" alt="affiche du film 6">
-                <div class="overlay">
-                    <p id="titre-6-cat2" class="titre-overlay"></p>
-                    <p class="bouton" onclick="afficher_fenetre_modale_film('6', '2')">Détails</p>
-                </div>
-            </div>
-
-            <div id="fenetre-modale-film-6-cat2" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-6-cat2" class="conteneur-image-film-modale">
-                        <img id="image-film-6-modale-cat2" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-film-6-modale-cat2"></h1>
-                        <p class="supprimer-margin-padding" id="infos-film-6-modale-cat2"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-film-6-modale-cat2"></p>
-                        <p class="supprimer-margin-padding" id="imdb-film-6-modale-cat2"></p>
-                        <p class="realisateur-film-modale"><span>Réalisé par:</span></br>
-                            <span id="realisateurs-film-6-modale-cat2"></span>
-                        </p>
-                    </div>
-                </div>
-                <p id="description-film-6-modale-cat2" class="description-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-6-cat2"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-film-6-modale-cat2"></p>
-                </div>                
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_film('6', '2')">Fermer</p>
-                </div>
-            </div>
-
-        </div>
-        <div class="conteneur-voir-plus">
-            <p id="bouton-voir-plus-cat2" class="bouton-voir-plus" onclick="voir_plus_moins('cat2')">Voir plus</p>
+        <div class="contener-see-more">
+            <p id="button-see-more-cat2" class="button-see-more" onclick="see_more_less('cat2')">Voir plus</p>
         </div>
     </div>
 
-    <div class="categorie">
-
-        <div class="titre-categorie">
-            <h1 id="titre3"></h1>
+    <div class="category">
+        <div class="category-title">
+            <h1 id="title3">title 3</h1>
         </div>
+        <div id="element-grid-cat3" class="element-grid">
 
-        <div id="grille-elements-cat3" class="grille-elements" onclick="masquer_menu()">
-
-            <div class="conteneur">
-                <img id="img-1-cat3" src="" alt="affiche du film 1">
+            <div class="contener">
+                <img id="img-1-cat3" src="img/image_generique.jpg" alt="affiche du film 1">
                 <div class="overlay">
-                    <p id="titre-1-cat3" class="titre-overlay"></p>
-                    <p class="bouton" onclick="afficher_fenetre_modale_film('1', '3')">Détails</p>
+                    <p id="title-1-cat3" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('3', '0')">Details</p>
                 </div>
             </div>
 
-            <div id="fenetre-modale-film-1-cat3" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-1-cat3" class="conteneur-image-film-modale">
-                        <img id="image-film-1-modale-cat3" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-film-1-modale-cat3"></h1>
-                        <p class="supprimer-margin-padding" id="infos-film-1-modale-cat3"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-film-1-modale-cat3"></p>
-                        <p class="supprimer-margin-padding" id="imdb-film-1-modale-cat3"></p>
-                        <p class="realisateur-film-modale"><span>Réalisé par:</span></br>
-                            <span id="realisateurs-film-1-modale-cat3"></span>
-                        </p>
-                    </div>
-                </div>
-                <p id="description-film-1-modale-cat3" class="description-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-1-cat3"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-film-1-modale-cat3"></p>
-                </div>                
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_film('1', '3')">Fermer</p>
-                </div>
-            </div>
-
-            <div class="conteneur">
-                <img id="img-2-cat3" src="" alt="affiche du film 2">
+            <div class="contener">
+                <img id="img-2-cat3" src="img/image_generique.jpg" alt="affiche du film 2">
                 <div class="overlay">
-                    <p id="titre-2-cat3" class="titre-overlay"></p>
-                    <p class="bouton" onclick="afficher_fenetre_modale_film('2', '3')">Détails</p>
+                    <p id="title-2-cat3" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('3', '1')">Details</p>
                 </div>
             </div>
 
-            <div id="fenetre-modale-film-2-cat3" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-2-cat3" class="conteneur-image-film-modale">
-                        <img id="image-film-2-modale-cat3" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-film-2-modale-cat3"></h1>
-                        <p class="supprimer-margin-padding" id="infos-film-2-modale-cat3"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-film-2-modale-cat3"></p>
-                        <p class="supprimer-margin-padding" id="imdb-film-2-modale-cat3"></p>
-                        <p class="realisateur-film-modale"><span>Réalisé par:</span></br>
-                            <span id="realisateurs-film-2-modale-cat3"></span>
-                        </p>
-                    </div>
-                </div>
-                <p id="description-film-2-modale-cat3" class="description-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-2-cat3"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-film-2-modale-cat3"></p>
-                </div>                
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_film('2', '3')">Fermer</p>
-                </div>
-            </div>
-
-            <div class="conteneur">
-                <img id="img-3-cat3" src="" alt="affiche du film 3">
+            <div class="contener">
+                <img id="img-3-cat3" src="img/image_generique.jpg" alt="affiche du film 3">
                 <div class="overlay">
-                    <p id="titre-3-cat3" class="titre-overlay"></p>
-                    <p class="bouton" onclick="afficher_fenetre_modale_film('3', '3')">Détails</p>
+                    <p id="title-3-cat3" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('3', '2')">Details</p>
                 </div>
             </div>
 
-            <div id="fenetre-modale-film-3-cat3" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-3-cat3" class="conteneur-image-film-modale">
-                        <img id="image-film-3-modale-cat3" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-film-3-modale-cat3"></h1>
-                        <p class="supprimer-margin-padding" id="infos-film-3-modale-cat3"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-film-3-modale-cat3"></p>
-                        <p class="supprimer-margin-padding" id="imdb-film-3-modale-cat3"></p>
-                        <p class="realisateur-film-modale"><span>Réalisé par:</span></br>
-                            <span id="realisateurs-film-3-modale-cat3"></span>
-                        </p>
-                    </div>
-                </div>
-                <p id="description-film-3-modale-cat3" class="description-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-3-cat3"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-film-3-modale-cat3"></p>
-                </div>
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_film('3', '3')">Fermer</p>
-                </div>
-            </div>
-
-            <div class="conteneur">
-                <img id="img-4-cat3" src="" alt="affiche du film 4">
+            <div class="contener">
+                <img id="img-4-cat3" src="img/image_generique.jpg" alt="affiche du film 4">
                 <div class="overlay">
-                    <p id="titre-4-cat3" class="titre-overlay"></p>
-                    <p class="bouton" onclick="afficher_fenetre_modale_film('4', '3')">Détails</p>
+                    <p id="title-4-cat3" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('3', '3')">Details</p>
                 </div>
             </div>
 
-            <div id="fenetre-modale-film-4-cat3" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-4-cat3" class="conteneur-image-film-modale">
-                        <img id="image-film-4-modale-cat3" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-film-4-modale-cat3"></h1>
-                        <p class="supprimer-margin-padding" id="infos-film-4-modale-cat3"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-film-4-modale-cat3"></p>
-                        <p class="supprimer-margin-padding" id="imdb-film-4-modale-cat3"></p>
-                        <p class="realisateur-film-modale"><span>Réalisé par:</span></br>
-                            <span id="realisateurs-film-4-modale-cat3"></span>
-                        </p>
-                    </div>
-                </div>
-                <p id="description-film-4-modale-cat3" class="description-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-4-cat3"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-film-4-modale-cat3"></p>
-                </div>                
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_film('4', '3')">Fermer</p>
-                </div>
-            </div>
-
-            <div class="conteneur">
-                <img id="img-5-cat3" src="" alt="affiche du film 5">
+            <div class="contener">
+                <img id="img-5-cat3" src="img/image_generique.jpg" alt="affiche du film 5">
                 <div class="overlay">
-                    <p id="titre-5-cat3" class="titre-overlay"></p>
-                    <p class="bouton" onclick="afficher_fenetre_modale_film('5', '3')">Détails</p>
+                    <p id="title-5-cat3" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('3', '4')">Details</p>
                 </div>
             </div>
 
-            <div id="fenetre-modale-film-5-cat3" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-5-cat3" class="conteneur-image-film-modale">
-                        <img id="image-film-5-modale-cat3" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-film-5-modale-cat3"></h1>
-                        <p class="supprimer-margin-padding" id="infos-film-5-modale-cat3"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-film-5-modale-cat3"></p>
-                        <p class="supprimer-margin-padding" id="imdb-film-5-modale-cat3"></p>
-                        <p class="realisateur-film-modale"><span>Réalisé par:</span></br>
-                            <span id="realisateurs-film-5-modale-cat3"></span>
-                        </p>
-                    </div>
-                </div>
-                <p id="description-film-5-modale-cat3" class="description-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-5-cat3"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-film-5-modale-cat3"></p>
-                </div>                
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_film('5', '3')">Fermer</p>
-                </div>
-            </div>
-
-            <div class="conteneur">
-                <img id="img-6-cat3" src="" alt="affiche du film 6">
+            <div class="contener">
+                <img id="img-6-cat3" src="img/image_generique.jpg" alt="affiche du film 6">
                 <div class="overlay">
-                    <p id="titre-6-cat3" class="titre-overlay"></p>
-                    <p class="bouton" onclick="afficher_fenetre_modale_film('6', '3')">Détails</p>
+                    <p id="title-6-cat3" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('3', '5')">Details</p>
                 </div>
             </div>
-
-            <div id="fenetre-modale-film-6-cat3" class="fenetre-modale-film-cachee">
-                <div class="grille-elements-film-modale">
-                    <div id="conteneur-image-modale-6-cat3" class="conteneur-image-film-modale">
-                        <img id="image-film-6-modale-cat3" src="" alt="affiche du film">
-                    </div>
-                    <div class="conteneur-texte-film-modale">
-                        <h1 id="titre-film-6-modale-cat3"></h1>
-                        <p class="supprimer-margin-padding" id="infos-film-6-modale-cat3"></p>
-                        <p class="supprimer-margin-padding" id="infos-2-film-6-modale-cat3"></p>
-                        <p class="supprimer-margin-padding" id="imdb-film-6-modale-cat3"></p>
-                        <p class="realisateur-film-modale"><span>Réalisé par:</span></br>
-                            <span id="realisateurs-film-6-modale-cat3"></span>
-                        </p>
-                    </div>
-                </div>
-                <p id="description-film-6-modale-cat3" class="description-film-modale"></p>
-                <div id="nouveau-conteneur-image-modale-6-cat3"></div>
-                <div class="conteneur-liste-acteurs-modale">
-                    <p class="avec">Avec :</p>
-                    <p id="acteurs-film-6-modale-cat3"></p>
-                </div>
-                <div class="conteneur-bouton-modale">
-                    <p class="bouton-film-modale" onclick="fermer_fenetre_modale_film('6', '3')">Fermer</p>
-                </div>
-            </div>
-
         </div>
-        <div class="conteneur-voir-plus">
-            <p id="bouton-voir-plus-cat3" class="bouton-voir-plus" onclick="voir_plus_moins('cat3')">Voir plus</p>
+        <div class="contener-see-more">
+            <p id="button-see-more-cat3" class="button-see-more" onclick="see_more_less('cat3')">Voir plus</p>
         </div>
     </div>
 
-    <div class="categorie">
+    <div class="category">
         <p id="chargement" class="chargement-cache">Chargement des données en cours ...</p>
-        <div class="titre-menu">
-            <h1 class="titre-categorie">Autres : &nbsp;</h1>
-            <div id="bouton-menu" class="conteneur-titre-menu" onclick="afficher_masquer_menu()">
-                <p id="categorie-menu" class="menu titre-categorie">Menu</p>
+        <div class="title-menu">
+            <h1 class="category-title">Autres : &nbsp;</h1>
+            <div id="button-menu" class="contener-title-menu" onclick="change_display_menu()">
+                <p id="category-menu" class="menu category-title">Menu</p>
                 <img src="img/triangle.png" alt="flèche vers le bas">
             </div>
         </div>
-            <ul id="options-menu" class="menu-liste-cache">
-            </ul>
+            <ul id="options-menu" class="menu-liste-cache"></ul>
+        <div id="element-grid-cat4" class="element-grid">
 
-        <div id="grille-elements-cat4" class="grille-elements" onclick="masquer_menu()">
+            <div id="contener-1-cat4" class="contener-cache">
+                <img id="img-1-cat4" src="img/image_generique.jpg" alt="affiche du film 1">
+                <div class="overlay">
+                    <p id="title-1-cat4" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('4', '0')">Details</p>
+                </div>
+            </div>
 
-    </div>
-    <div id="conteneur-voir-plus-cat4" class="conteneur-voir-plus cat4">
-        <p id="bouton-voir-plus-cat4" class="bouton-voir-plus" onclick="voir_plus_moins('cat4')">Voir plus</p>
+            <div id="contener-2-cat4" class="contener-cache">
+                <img id="img-2-cat4" src="img/image_generique.jpg" alt="affiche du film 2">
+                <div class="overlay">
+                    <p id="title-2-cat4" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('4', '1')">Details</p>
+                </div>
+            </div>
+
+            <div id="contener-3-cat4" class="contener-cache">
+                <img id="img-3-cat4" src="img/image_generique.jpg" alt="affiche du film 3">
+                <div class="overlay">
+                    <p id="title-3-cat4" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('4', '2')">Details</p>
+                </div>
+            </div>
+
+            <div id="contener-4-cat4" class="contener-cache">
+                <img id="img-4-cat4" src="img/image_generique.jpg" alt="affiche du film 4">
+                <div class="overlay">
+                    <p id="title-4-cat4" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('4', '3')">Details</p>
+                </div>
+            </div>
+
+            <div id="contener-5-cat4" class="contener-cache">
+                <img id="img-5-cat4" src="img/image_generique.jpg" alt="affiche du film 5">
+                <div class="overlay">
+                    <p id="title-5-cat4" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('4', '4')">Details</p>
+                </div>
+            </div>
+
+            <div id="contener-6-cat4" class="contener-cache">
+                <img id="img-6-cat4" src="img/image_generique.jpg" alt="affiche du film 6">
+                <div class="overlay">
+                    <p id="title-6-cat4" class="title-overlay"></p>
+                    <p class="button" onclick="open_modal_window('4', '5')">Details</p>
+                </div>
+            </div>
+        </div>
+        <div id="contener-see-more-cat4" class="contener-see-more-cache">
+            <p id="button-see-more-cat4" class="button-see-more" onclick="see_more_less('cat4')">Voir plus</p>
+        </div>
     </div>
 </body>
 
